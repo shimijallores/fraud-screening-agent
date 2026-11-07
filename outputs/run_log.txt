@@ -1,0 +1,97 @@
+=== DATA ===
+{
+  "rows": 284807,
+  "columns": 31,
+  "fraud": 492,
+  "legit": 284315,
+  "fraud_pct": 0.1727,
+  "missing_values": 0,
+  "duplicate_rows": 1081,
+  "amount_min": 0.0,
+  "amount_max": 25691.16,
+  "amount_mean": 88.35,
+  "amount_median": 22.0,
+  "amount_mean_fraud": 122.21,
+  "amount_mean_legit": 88.29,
+  "time_span_hours": 48.0
+}
+
+=== SPLIT ===
+{
+  "train_rows": 213605,
+  "test_rows": 71202,
+  "train_fraud": 369,
+  "test_fraud": 123,
+  "test_size": 0.25,
+  "stratified": true
+}
+
+=== TRAINING Random Forest === {'n_estimators': 200, 'max_depth': 12, 'min_samples_leaf': 2, 'class_weight': 'balanced', 'n_jobs': -1, 'random_state': 42}
+
+=== RESULTS (test set) ===
+{
+  "threshold": 0.5,
+  "accuracy": 0.99927,
+  "precision_fraud": 0.7752,
+  "recall_fraud": 0.813,
+  "f1_fraud": 0.7937,
+  "roc_auc": 0.976,
+  "pr_auc_average_precision": 0.8218,
+  "confusion": {
+    "TN": 71050,
+    "FP": 29,
+    "FN": 23,
+    "TP": 100
+  },
+  "baseline_accuracy_if_always_legit": 0.99827
+}
+
+               precision    recall  f1-score   support
+
+       Legit     0.9997    0.9996    0.9996     71079
+       Fraud     0.7752    0.8130    0.7937       123
+
+    accuracy                         0.9993     71202
+   macro avg     0.8874    0.9063    0.8966     71202
+weighted avg     0.9993    0.9993    0.9993     71202
+
+=== THRESHOLD SWEEP ===
+{
+  "0.2": {
+    "precision": 0.3934,
+    "recall": 0.8699,
+    "f1": 0.5418,
+    "missed_fraud_FN": 16,
+    "false_alarms_FP": 165
+  },
+  "0.3": {
+    "precision": 0.5544,
+    "recall": 0.8699,
+    "f1": 0.6772,
+    "missed_fraud_FN": 16,
+    "false_alarms_FP": 86
+  },
+  "0.4": {
+    "precision": 0.6711,
+    "recall": 0.8293,
+    "f1": 0.7418,
+    "missed_fraud_FN": 21,
+    "false_alarms_FP": 50
+  },
+  "0.5": {
+    "precision": 0.7752,
+    "recall": 0.813,
+    "f1": 0.7937,
+    "missed_fraud_FN": 23,
+    "false_alarms_FP": 29
+  },
+  "0.6": {
+    "precision": 0.8261,
+    "recall": 0.7724,
+    "f1": 0.7983,
+    "missed_fraud_FN": 28,
+    "false_alarms_FP": 20
+  }
+}
+
+Saved charts + metrics.json to /Users/shimijallores/Downloads/work/commissions/unnamed-irish-commission/outputs
